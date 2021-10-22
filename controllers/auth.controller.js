@@ -1,8 +1,7 @@
 const db = require('../database/index');
 const jwt = require('jsonwebtoken');
-const config = require('config');
 
-const secretKey = config.get('jwt');
+const secretKey = 'yurk-do';
 
 const decodeToken = require('jwt-decode');
 
@@ -71,7 +70,7 @@ class authUserController {
     if (!req.headers.authorization) {
       res.status(401).json({ message: 'Пользователь не авторизован' });
     }
-    
+
     const userId = decodeToken(req.headers.authorization).userId;
 
     db.users.find({ _id: userId }, (error, users) => {
@@ -90,7 +89,7 @@ class authUserController {
         res.status(200).json({
           token: `Bearer ${token}`,
         });
-        console.log(token)
+        console.log(token);
       } else {
         res.status(401).json({
           message: 'Неверное имя пользователя либо пароль',

@@ -1,5 +1,3 @@
-const config = require('config');
-const jokesUrl = config.get('jokesUrl');
 const axios = require('axios');
 const db = require('../database/index');
 
@@ -35,7 +33,7 @@ class JokesService {
   }
 
   async addJokesToStore(quantity, socket) {
-    const data = await axios.get(`${jokesUrl}/${quantity}`);
+    const data = await axios.get(`https://api.icndb.com/jokes/random/${quantity}`);
     const jokesData = data.data.value;
     const jokesObjStore = {
       status: 'pending',

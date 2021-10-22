@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const config = require('config');
+const secretKey = 'yurk-do';
 
 module.exports = (req, res, next) => {
   try {
@@ -8,7 +8,7 @@ module.exports = (req, res, next) => {
     if (!token) {
       return res.status(401).json({ message: 'Auth error' });
     }
-    const decoded = jwt.verify(token, config.get('secretKey'));
+    const decoded = jwt.verify(token, secretKey);
     req.user = decoded;
     next();
   } catch (error) {
