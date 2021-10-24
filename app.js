@@ -4,7 +4,7 @@ const cors = require('cors');
 
 const app = express();
 
-const host = process.env.HOST || '127.0.0.1';
+const host = process.env.HOST || '0.0.0.0';
 const port = process.env.PORT || 5000;
 
 const http = require('http').createServer(app);
